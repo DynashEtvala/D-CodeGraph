@@ -25,10 +25,11 @@ namespace CodeGraph
         {
             switch (port.fieldName)
             {
-                //case "result":
-                //    Type val1Type = val1.GetType();
-                //    dynamic valResult = Activator.CreateInstance(val1Type);
-                //    return valResult.Name = val1.Name + " + " + val2.Name;
+                case "result":
+                    CN_Var valResult = new CN_Var();
+                    valResult.CN_Type = val1.CN_Type;
+                    valResult.Name = (GetInputPort("val1").GetInputValue() as CN_Var).Name + " + " + (GetInputPort("val2").GetInputValue() as CN_Var).Name;
+                    return valResult;
                 default:
                     return null;
             } 

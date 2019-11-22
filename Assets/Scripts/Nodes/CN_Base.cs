@@ -95,6 +95,21 @@ namespace CodeGraph
             return null;
         }
 
+        public override void OnCreateConnection(NodePort from, NodePort to)
+        {
+            base.OnCreateConnection(from, to);
+            switch (to.fieldName)
+            {
+                case "val1":
+                case "val2":
+                    if (to.ConnectionCount > 1)
+                    {
+                        to.Disconnect(from);
+                    }
+                    break;
+            }
+        }
+
         public static string CNTypeToString(CN_TYPE cn_type)
         {
             switch (cn_type)

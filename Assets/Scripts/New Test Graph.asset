@@ -36,6 +36,71 @@ MonoBehaviour:
   result:
     Name: 
     CN_Type: 0
+--- !u!114 &-8110933819223194489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5590e7a18d17e9b47ab2d5cd054bbf97, type: 3}
+  m_Name: CN_Add
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 696, y: -72}
+  ports:
+    keys:
+    - val1
+    - val2
+    - result
+    values:
+    - _fieldName: val1
+      _node: {fileID: -8110933819223194489}
+      _typeQualifiedName: CodeGraph.CN_Var, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: result
+        node: {fileID: 6034944796853941404}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: val2
+      _node: {fileID: -8110933819223194489}
+      _typeQualifiedName: CodeGraph.CN_Var, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: result
+        node: {fileID: 4881575854881938565}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: result
+      _node: {fileID: -8110933819223194489}
+      _typeQualifiedName: CodeGraph.CN_Var, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: val2
+        node: {fileID: 815712630135318059}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  val1:
+    Name: 
+    CN_Type: 0
+  val2:
+    Name: 
+    CN_Type: 0
+  result:
+    Name: 
+    CN_Type: 0
 --- !u!114 &-4498122801274225331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,6 +150,93 @@ MonoBehaviour:
   - {fileID: 3462972323008674881}
   - {fileID: -8712687731502974145}
   - {fileID: 6034944796853941404}
+  - {fileID: 815712630135318059}
+  - {fileID: -8110933819223194489}
+--- !u!114 &815712630135318059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20c2b30cae630934dab2570223113732, type: 3}
+  m_Name: CN_Set
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1016, y: -264}
+  ports:
+    keys:
+    - Next
+    - val1
+    - val2
+    - result
+    - Last
+    values:
+    - _fieldName: Next
+      _node: {fileID: 815712630135318059}
+      _typeQualifiedName: CodeGraph.CN_Coupler, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: val1
+      _node: {fileID: 815712630135318059}
+      _typeQualifiedName: CodeGraph.CN_Var, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: result
+        node: {fileID: 6034944796853941404}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: val2
+      _node: {fileID: 815712630135318059}
+      _typeQualifiedName: CodeGraph.CN_Var, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: result
+        node: {fileID: -8110933819223194489}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: result
+      _node: {fileID: 815712630135318059}
+      _typeQualifiedName: CodeGraph.CN_Var, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Last
+      _node: {fileID: 815712630135318059}
+      _typeQualifiedName: CodeGraph.CN_Coupler, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Next
+        node: {fileID: 6034944796853941404}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  val1:
+    Name: 
+    CN_Type: 0
+  val2:
+    Name: 
+    CN_Type: 0
+  result:
+    Name: 
+    CN_Type: 0
 --- !u!114 &3462972323008674881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,6 +323,9 @@ MonoBehaviour:
         PublicKeyToken=null
       connections:
       - fieldName: val2
+        node: {fileID: -8110933819223194489}
+        reroutePoints: []
+      - fieldName: val2
         node: {fileID: 6034944796853941404}
         reroutePoints: []
       _direction: 1
@@ -235,7 +390,7 @@ MonoBehaviour:
   m_Name: CN_Set
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 344, y: -264}
+  position: {x: 376, y: -264}
   ports:
     keys:
     - Next
@@ -248,7 +403,10 @@ MonoBehaviour:
       _node: {fileID: 6034944796853941404}
       _typeQualifiedName: CodeGraph.CN_Coupler, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: Last
+        node: {fileID: 815712630135318059}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
@@ -281,7 +439,13 @@ MonoBehaviour:
       _node: {fileID: 6034944796853941404}
       _typeQualifiedName: CodeGraph.CN_Var, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: val1
+        node: {fileID: -8110933819223194489}
+        reroutePoints: []
+      - fieldName: val1
+        node: {fileID: 815712630135318059}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0

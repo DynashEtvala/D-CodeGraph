@@ -19,6 +19,7 @@ namespace CodeGraph
 
         CodeGraph()
         {
+            
             CodeStr = "";
 
             VNs = new List<CN_Variable>();
@@ -28,29 +29,36 @@ namespace CodeGraph
             Scope = 0;
         }
 
+        [ContextMenu("Test")]
+        void Test()
+        {
+            Debug.Log("Success!");
+        }
+
         /// <summary>
         /// Iterate through all nodes and compile them into a string of c# code as a unity script.
         /// </summary>
+        [ContextMenu("Build!")]
         void BuildComponent()
         {
-            Type typeTest = new CN_Variable().GetType();
+            PrepBuild();
+
             //Populate Variable list
-            foreach(Node n in nodes)
+            foreach (Node n in nodes)
             {
                 //Check if n is a CN_Variable node
-                if (typeTest.Equals(n.GetType()))
+                if (n is CN_Variable)
                 {
                     //add node to VNs list
                     VNs.Add((CN_Variable)n);
                 }
             }
-
-            typeTest = new CN_StarterBase().GetType();
+            
             //Populate Starter list
             foreach(Node n in nodes)
             {
                 //Check if n is a CN_StarterBase
-                if (typeTest.Equals(n.GetType()))
+                if (n is CN_StarterBase)
                 {
                     //add node to SNs list
                     SNs.Add((CN_StarterBase)n);
@@ -58,7 +66,7 @@ namespace CodeGraph
             }
 
             //Add usings
-            Appln("using System");
+            Appln("using System;");
             Appln("using System.Collections;");
             Appln("using System.Collections.Generic;");
             Appln("using UnityEngine;");
@@ -84,22 +92,33 @@ namespace CodeGraph
 
                     CN_OrderedBase curNode = (CN_OrderedBase)n.GetPort("Next").Connection.node;
                     //step through connected order dependant nodes (set, loops, method calls, etc)
+                    while(curNode != null)
                     {
                         //determine node type and begin performance of actions
+                        if(curNode is CN_OrderedBase)
+                        {
+                            Appln(curNode.GetResult());
+                        }
 
                         //if loop, add to LoopStack and iterate through loop. When completed, make next node to procede to use continuation port node
 
-                        //track backwards though variable nodes and fill in missing pieces
-
-                        //close function if function was used
-
-                        //end line
+                        //set curNode to next node
+                        if (curNode.GetPort("Next").ConnectionCount == 1)
+                        {
+                            curNode = (CN_OrderedBase)curNode.GetPort("Next").Connection.node;
+                        }
+                        else
+                        {
+                            curNode = null;
+                        }
                     }
                     CloseScope();
                 }
             }
             CloseScope();
-            Console.WriteLine(CodeStr);
+            Debug.Log(CodeStr);
+
+            PrepBuild();
         }
 
         /// <summary>
@@ -143,11 +162,22 @@ namespace CodeGraph
         /// <param name="str"></param>
         void Appln(string str = "")
         {
-            App(str + "\n");
             for (int i = 0; i < Scope; i++)
             {
                 App("\t");
             }
+            App(str + "\n");
+        }
+
+        /// <summary>
+        /// Clears the VNs and SNs lists.
+        /// </summary>
+        void PrepBuild()
+        {
+            CodeStr = "";
+            VNs.Clear();
+            SNs.Clear();
+            Scope = 0;
         }
     }
 }

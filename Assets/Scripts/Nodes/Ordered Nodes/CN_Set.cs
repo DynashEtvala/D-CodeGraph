@@ -19,10 +19,34 @@ namespace CodeGraph
 
         }
 
+        public override void OnCreateConnection(NodePort from, NodePort to)
+        {
+            base.OnCreateConnection(from, to);
+            if(to == GetPort("val1") && !(from.node is CN_Variable))
+            {
+                to.Disconnect(from);
+            }
+        }
+
         // Return the correct value of an output port when requested
         public override object GetValue(NodePort port)
         {
-            return null; // Replace this
+            switch (port.fieldName)
+            {
+                case "result":
+                    if (GetInputPort("val1").Connection.node is CN_Variable)
+                    {
+                        return (GetInputPort("val1").GetInputValue() as CN_Var);
+                    }
+                    return null;
+                default:
+                    return null;
+            }
+        }
+
+        public override string GetResult()
+        {
+            return (GetInputPort("val1").GetInputValue() as CN_Var).Name + " = " + (GetInputPort("val2").GetInputValue() as CN_Var).Name + ";";
         }
     }
 }
