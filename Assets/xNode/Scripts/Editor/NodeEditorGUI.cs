@@ -11,7 +11,7 @@ namespace XNodeEditor {
         private List<UnityEngine.Object> selectionCache;
         private List<XNode.Node> culledNodes;
         /// <summary> 19 if docked, 22 if not </summary>
-        private int topPadding { get { return isDocked() ? 19 : 22; } }
+        public int topPadding { get { return isDocked() ? 19 : 22; } }
         /// <summary> Executed after all other window GUI. Useful if Zoom is ruining your day. Automatically resets after being run.</summary>
         public event Action onLateGUI;
 

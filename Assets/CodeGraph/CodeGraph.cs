@@ -9,37 +9,32 @@ namespace CodeGraph
     [CreateAssetMenu]
     public class CodeGraph : NodeGraph
     {
+        public string ComponentName;
+
         string CodeStr;
 
-        List<CN_Variable> VNs;
+        List<CN_VariableBase> VNs;
         List<CN_StarterBase> SNs;
         List<CN_Base> LoopStack;
-        string ComponentName;
         int Scope;
 
         CodeGraph()
         {
-            
+            ComponentName = "Component Name";
+
             CodeStr = "";
 
-            VNs = new List<CN_Variable>();
+            VNs = new List<CN_VariableBase>();
             SNs = new List<CN_StarterBase>();
             LoopStack = new List<CN_Base>();
-            ComponentName = "";
             Scope = 0;
-        }
-
-        [ContextMenu("Test")]
-        void Test()
-        {
-            Debug.Log("Success!");
         }
 
         /// <summary>
         /// Iterate through all nodes and compile them into a string of c# code as a unity script.
         /// </summary>
-        [ContextMenu("Build!")]
-        void BuildComponent()
+        //[ContextMenu("Build!")] //If build button is disabled, uncomment this line
+        public void BuildComponent()
         {
             PrepBuild();
 
@@ -47,10 +42,10 @@ namespace CodeGraph
             foreach (Node n in nodes)
             {
                 //Check if n is a CN_Variable node
-                if (n is CN_Variable)
+                if (n is CN_VariableBase)
                 {
                     //add node to VNs list
-                    VNs.Add((CN_Variable)n);
+                    VNs.Add((CN_VariableBase)n);
                 }
             }
             
@@ -74,11 +69,11 @@ namespace CodeGraph
             Appln();
 
             //Class Header
-            Appln("public class " + ComponentName + " : MonoBehaviour");
+            Appln("public class " + name + " : MonoBehaviour");
             OpenScope();
             {
                 //Loop through and set up variables
-                foreach(CN_Variable n in VNs)
+                foreach(CN_VariableBase n in VNs)
                 {
                     Appln(n.GetResult());
                 }
@@ -86,6 +81,9 @@ namespace CodeGraph
                 //Loop through StartNodes (Update, Start, etc. + any methods)
                 foreach(CN_StarterBase n in SNs)
                 {
+                    //cosmetic spacing
+                    Appln();
+
                     //Add current StartNode's method header (Start, Update, etc.)
                     Appln(n.GetResult());
                     OpenScope();

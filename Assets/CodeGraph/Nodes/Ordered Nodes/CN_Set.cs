@@ -8,24 +8,25 @@ namespace CodeGraph
     public class CN_Set : CN_OrderedBase
     {
         [Output] public CN_Coupler Next;
-        [Input] public CN_Var val1;
-        [Input] public CN_Var val2;
-        [Output] public CN_Var result;
 
         // Use this for initialization
         protected override void Init()
         {
             base.Init();
-
+            
+            AddDynamicInput(typeof(CNV_Var), ConnectionType.Override, TypeConstraint.Inherited, "val1");
+            AddDynamicInput(typeof(CNV_Var), ConnectionType.Override, TypeConstraint.None, "val2");
+            AddDynamicOutput(typeof(CNV_Var), ConnectionType.Multiple, TypeConstraint.None, "result");
         }
 
         public override void OnCreateConnection(NodePort from, NodePort to)
         {
-            base.OnCreateConnection(from, to);
-            if(to == GetPort("val1") && !(from.node is CN_Variable))
+            if (to == GetPort("val1") && !(from.node is CN_VariableBase || from.node is CN_UnityAccessBase))
             {
                 to.Disconnect(from);
+                return;
             }
+            base.OnCreateConnection(from, to);
         }
 
         // Return the correct value of an output port when requested
@@ -34,11 +35,7 @@ namespace CodeGraph
             switch (port.fieldName)
             {
                 case "result":
-                    if (GetInputPort("val1").Connection.node is CN_Variable)
-                    {
-                        return (GetInputPort("val1").GetInputValue() as CN_Var);
-                    }
-                    return null;
+                    return (GetInputPort("val1").GetInputValue() as CNV_Var);
                 default:
                     return null;
             }
@@ -46,7 +43,7 @@ namespace CodeGraph
 
         public override string GetResult()
         {
-            return (GetInputPort("val1").GetInputValue() as CN_Var).Name + " = " + (GetInputPort("val2").GetInputValue() as CN_Var).Name + ";";
+            return (GetInputPort("val1").GetInputValue() as CNV_Var).Name + " = " + (GetInputPort("val2").GetInputValue() as CNV_Var).Name + ";";
         }
     }
 }
