@@ -6,7 +6,7 @@ using XNode;
 
 namespace CodeGraph
 {
-    public enum CN_TYPE { CN_INT, CN_FLOAT, CN_STRING, CN_VECTOR2, CN_VECTOR3, CN_BOOL, CN_COLOR, CN_TRANSFORM, CN_GAMEOBJECT, CN_QUATERNION, CN_MONOBEHAVIOUR };
+    public enum CN_TYPE { INT, FLOAT, STRING, VECTOR2, VECTOR3, BOOL, COLOR, TRANSFORM, GAMEOBJECT, QUATERNION, MONOBEHAVIOUR };
     public enum CN_ACCESSABILITY { PUBLIC, PRIVATE, PROTECTED, PRIVATE_SERIALIZABLE };
 
     [Serializable]
@@ -24,7 +24,7 @@ namespace CodeGraph
     {
         public CNV_Int()
         {
-            CN_Type = CN_TYPE.CN_INT;
+            CN_Type = CN_TYPE.INT;
         }
 
         public CNV_Int(string varName) : this()
@@ -38,7 +38,7 @@ namespace CodeGraph
     {
         public CNV_Float()
         {
-            CN_Type = CN_TYPE.CN_FLOAT;
+            CN_Type = CN_TYPE.FLOAT;
         }
 
         public CNV_Float(string varName) : this()
@@ -52,7 +52,7 @@ namespace CodeGraph
     {
         public CNV_String()
         {
-            CN_Type = CN_TYPE.CN_STRING;
+            CN_Type = CN_TYPE.STRING;
         }
 
         public CNV_String(string varName) : this()
@@ -66,7 +66,7 @@ namespace CodeGraph
     {
         public CNV_Vector2()
         {
-            CN_Type = CN_TYPE.CN_VECTOR2;
+            CN_Type = CN_TYPE.VECTOR2;
         }
 
         public CNV_Vector2(string varName) : this()
@@ -80,7 +80,7 @@ namespace CodeGraph
     {
         public CNV_Vector3()
         {
-            CN_Type = CN_TYPE.CN_VECTOR3;
+            CN_Type = CN_TYPE.VECTOR3;
         }
 
         public CNV_Vector3(string varName) : this()
@@ -104,7 +104,7 @@ namespace CodeGraph
     {
         public CNV_Transform()
         {
-            CN_Type = CN_TYPE.CN_TRANSFORM;
+            CN_Type = CN_TYPE.TRANSFORM;
         }
 
         public CNV_Transform(string varName) : this()
@@ -123,7 +123,7 @@ namespace CodeGraph
     {
         public CNV_Quaternion()
         {
-            CN_Type = CN_TYPE.CN_QUATERNION;
+            CN_Type = CN_TYPE.QUATERNION;
         }
 
         public CNV_Quaternion(string varName) : this()
@@ -177,27 +177,27 @@ namespace CodeGraph
         {
             switch (cn_type)
             {
-                case CN_TYPE.CN_INT:
+                case CN_TYPE.INT:
                     return "int";
-                case CN_TYPE.CN_FLOAT:
+                case CN_TYPE.FLOAT:
                     return "float";
-                case CN_TYPE.CN_STRING:
+                case CN_TYPE.STRING:
                     return "string";
-                case CN_TYPE.CN_VECTOR2:
+                case CN_TYPE.VECTOR2:
                     return "Vector2";
-                case CN_TYPE.CN_VECTOR3:
+                case CN_TYPE.VECTOR3:
                     return "Vector3";
-                case CN_TYPE.CN_BOOL:
+                case CN_TYPE.BOOL:
                     return "bool";
-                case CN_TYPE.CN_COLOR:
+                case CN_TYPE.COLOR:
                     return "Volor";
-                case CN_TYPE.CN_TRANSFORM:
+                case CN_TYPE.TRANSFORM:
                     return "Transform";
-                case CN_TYPE.CN_GAMEOBJECT:
+                case CN_TYPE.GAMEOBJECT:
                     return "GameObject";
-                case CN_TYPE.CN_QUATERNION:
+                case CN_TYPE.QUATERNION:
                     return "Quaternion";
-                case CN_TYPE.CN_MONOBEHAVIOUR:
+                case CN_TYPE.MONOBEHAVIOUR:
                     return "MonoBehaviour";
                 default:
                     throw new Exception("Invalid CN_TYPE");

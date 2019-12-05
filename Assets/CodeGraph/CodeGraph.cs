@@ -88,7 +88,12 @@ namespace CodeGraph
                     Appln(n.GetResult());
                     OpenScope();
 
-                    CN_OrderedBase curNode = (CN_OrderedBase)n.GetPort("Next").Connection.node;
+                    CN_OrderedBase curNode = null;
+
+                    if (n.GetPort("Next").ConnectionCount > 0)
+                    {
+                        curNode = (CN_OrderedBase)n.GetPort("Next").Connection.node;
+                    }
                     //step through connected order dependant nodes (set, loops, method calls, etc)
                     while(curNode != null)
                     {

@@ -1,5 +1,78 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8193321795924498569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20c2b30cae630934dab2570223113732, type: 3}
+  m_Name: CN_Set
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -104, y: -328}
+  ports:
+    keys:
+    - Next
+    - Last
+    - val1
+    - val2
+    - result
+    values:
+    - _fieldName: Next
+      _node: {fileID: -8193321795924498569}
+      _typeQualifiedName: CodeGraph.CN_Coupler, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Last
+      _node: {fileID: -8193321795924498569}
+      _typeQualifiedName: CodeGraph.CN_Coupler, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Next
+        node: {fileID: -2962232017778413539}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: val1
+      _node: {fileID: -8193321795924498569}
+      _typeQualifiedName: CodeGraph.CNV_Var, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: float
+        node: {fileID: 1407385597814188681}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 1
+      _dynamic: 1
+    - _fieldName: val2
+      _node: {fileID: -8193321795924498569}
+      _typeQualifiedName: CodeGraph.CNV_Var, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: result
+      _node: {fileID: -8193321795924498569}
+      _typeQualifiedName: CodeGraph.CNV_Var, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
 --- !u!114 &-6415943755121186186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13,7 +86,7 @@ MonoBehaviour:
   m_Name: CN_Set
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 328, y: -104}
+  position: {x: 648, y: -72}
   ports:
     keys:
     - Next
@@ -35,7 +108,10 @@ MonoBehaviour:
       _node: {fileID: -6415943755121186186}
       _typeQualifiedName: CodeGraph.CN_Coupler, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: Next
+        node: {fileID: 6634609540893471414}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -73,6 +149,200 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 1
+--- !u!114 &-3902240181966504727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8498c6c60de160946b54a8ae9732c40b, type: 3}
+  m_Name: CN_Variable Vector 3
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -456, y: 184}
+  ports:
+    keys:
+    - vector3
+    - x
+    - y
+    - z
+    values:
+    - _fieldName: vector3
+      _node: {fileID: -3902240181966504727}
+      _typeQualifiedName: CodeGraph.CNV_Vector3, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: val1
+        node: {fileID: -2571367001588692650}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: x
+      _node: {fileID: -3902240181966504727}
+      _typeQualifiedName: CodeGraph.CNV_Float, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: y
+      _node: {fileID: -3902240181966504727}
+      _typeQualifiedName: CodeGraph.CNV_Float, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: z
+      _node: {fileID: -3902240181966504727}
+      _typeQualifiedName: CodeGraph.CNV_Float, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  Name: Direction
+  accessability: 0
+--- !u!114 &-3560135690740185019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40e037080ba199b478e1e3dac4369d45, type: 3}
+  m_Name: CN_Time
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -456, y: 488}
+  ports:
+    keys:
+    - deltaTime
+    - fixedTime
+    values:
+    - _fieldName: deltaTime
+      _node: {fileID: -3560135690740185019}
+      _typeQualifiedName: CodeGraph.CNV_Float, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: val2
+        node: {fileID: 666460554109762516}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: fixedTime
+      _node: {fileID: -3560135690740185019}
+      _typeQualifiedName: CodeGraph.CNV_Float, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  deltaTime:
+    Name: 
+    CN_Type: 1
+  fixedTime:
+    Name: 
+    CN_Type: 1
+--- !u!114 &-2962232017778413539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a97b91258a3f4284586d4338de764134, type: 3}
+  m_Name: CN_Start
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -456, y: -392}
+  ports:
+    keys:
+    - Next
+    values:
+    - _fieldName: Next
+      _node: {fileID: -2962232017778413539}
+      _typeQualifiedName: CodeGraph.CN_Coupler, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Last
+        node: {fileID: -8193321795924498569}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+--- !u!114 &-2571367001588692650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8d724710e42c0543987c81e653df41d, type: 3}
+  m_Name: CN_Multiply
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -168, y: 200}
+  ports:
+    keys:
+    - val1
+    - val2
+    - result
+    values:
+    - _fieldName: val1
+      _node: {fileID: -2571367001588692650}
+      _typeQualifiedName: CodeGraph.CNV_Var, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: vector3
+        node: {fileID: -3902240181966504727}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 1
+      _dynamic: 1
+    - _fieldName: val2
+      _node: {fileID: -2571367001588692650}
+      _typeQualifiedName: CodeGraph.CNV_Var, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: float
+        node: {fileID: 2732235146093360922}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: result
+      _node: {fileID: -2571367001588692650}
+      _typeQualifiedName: CodeGraph.CNV_Var, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: val1
+        node: {fileID: 666460554109762516}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
 --- !u!114 &-1445525291867610243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86,7 +356,7 @@ MonoBehaviour:
   m_Name: CN_Add
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -72, y: 104}
+  position: {x: 344, y: 136}
   ports:
     keys:
     - val1
@@ -109,7 +379,10 @@ MonoBehaviour:
       _node: {fileID: -1445525291867610243}
       _typeQualifiedName: CodeGraph.CNV_Var, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: result
+        node: {fileID: 666460554109762516}
+        reroutePoints: []
       _direction: 0
       _connectionType: 1
       _typeConstraint: 0
@@ -143,7 +416,135 @@ MonoBehaviour:
   - {fileID: 5176232295847560033}
   - {fileID: -6415943755121186186}
   - {fileID: -1445525291867610243}
+  - {fileID: -3560135690740185019}
+  - {fileID: 666460554109762516}
+  - {fileID: -2571367001588692650}
+  - {fileID: -3902240181966504727}
+  - {fileID: 2732235146093360922}
+  - {fileID: -2962232017778413539}
+  - {fileID: 1407385597814188681}
+  - {fileID: -8193321795924498569}
   ComponentName: Component s
+--- !u!114 &666460554109762516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8d724710e42c0543987c81e653df41d, type: 3}
+  m_Name: CN_Multiply
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 56, y: 296}
+  ports:
+    keys:
+    - val1
+    - val2
+    - result
+    values:
+    - _fieldName: val1
+      _node: {fileID: 666460554109762516}
+      _typeQualifiedName: CodeGraph.CNV_Var, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: result
+        node: {fileID: -2571367001588692650}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 1
+      _dynamic: 1
+    - _fieldName: val2
+      _node: {fileID: 666460554109762516}
+      _typeQualifiedName: CodeGraph.CNV_Var, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: deltaTime
+        node: {fileID: -3560135690740185019}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: result
+      _node: {fileID: 666460554109762516}
+      _typeQualifiedName: CodeGraph.CNV_Var, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: val2
+        node: {fileID: -1445525291867610243}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+--- !u!114 &1407385597814188681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e77a829909a3c954d91c6a5dc0d7ab17, type: 3}
+  m_Name: CN_Variable Float
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -456, y: -296}
+  ports:
+    keys:
+    - float
+    values:
+    - _fieldName: float
+      _node: {fileID: 1407385597814188681}
+      _typeQualifiedName: CodeGraph.CNV_Float, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: val1
+        node: {fileID: -8193321795924498569}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  Name: zDrift
+  accessability: 1
+--- !u!114 &2732235146093360922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e77a829909a3c954d91c6a5dc0d7ab17, type: 3}
+  m_Name: CN_Variable Float
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -456, y: 360}
+  ports:
+    keys:
+    - float
+    values:
+    - _fieldName: float
+      _node: {fileID: 2732235146093360922}
+      _typeQualifiedName: CodeGraph.CNV_Float, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: val2
+        node: {fileID: -2571367001588692650}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  Name: Speed
+  accessability: 0
 --- !u!114 &5176232295847560033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,7 +643,10 @@ MonoBehaviour:
       _node: {fileID: 6634609540893471414}
       _typeQualifiedName: CodeGraph.CN_Coupler, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: Last
+        node: {fileID: -6415943755121186186}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0

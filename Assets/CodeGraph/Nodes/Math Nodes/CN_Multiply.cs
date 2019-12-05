@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using XNode;
 
-namespace CodeGraph
-{
-    public class CN_Add : CN_MathBase
+namespace CodeGraph {
+    public class CN_Multiply : CN_MathBase
     {
 
         // Use this for initialization
@@ -27,11 +25,11 @@ namespace CodeGraph
                 case "result":
                     CNV_Var valResult = new CNV_Var();
                     valResult.CN_Type = InputVar("val1").CN_Type;
-                    valResult.Name = InputVarName("val1") + (GetPort("val2").ConnectionCount > 0 ? " + " + InputVarName("val2") : "");
+                    valResult.Name = InputVarName("val1") + (GetPort("val2").ConnectionCount > 0 ? " * " + InputVarName("val2") : "");
                     return valResult;
                 default:
                     return null;
-            } 
+            }
         }
     }
 }
