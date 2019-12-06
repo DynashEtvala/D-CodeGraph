@@ -7,15 +7,17 @@ namespace CodeGraph
 {
     public class CN_Set : CN_OrderedBase
     {
-        [Output] public CN_Coupler Next;
 
         // Use this for initialization
         protected override void Init()
         {
             base.Init();
-            
+
+            AddDynamicOutput(typeof(CN_Coupler), ConnectionType.Override, TypeConstraint.Inherited, "Next");
+
             AddDynamicInput(typeof(CNV_Var), ConnectionType.Override, TypeConstraint.Inherited, "val1");
             AddDynamicInput(typeof(CNV_Var), ConnectionType.Override, TypeConstraint.None, "val2");
+
             AddDynamicOutput(typeof(CNV_Var), ConnectionType.Multiple, TypeConstraint.None, "result");
         }
 

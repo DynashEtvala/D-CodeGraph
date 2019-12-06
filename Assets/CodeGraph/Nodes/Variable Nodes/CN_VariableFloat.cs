@@ -20,7 +20,7 @@ namespace CodeGraph
         {
             switch (port.fieldName)
             {
-                case "variable":
+                case "float":
                     return new CNV_Float(Name);
                 default:
                     return null;

@@ -7,8 +7,6 @@ namespace CodeGraph
 {
     public class CN_ConstantBase : CN_Base
     {
-        public string value;
-
         // Use this for initialization
         protected override void Init()
         {

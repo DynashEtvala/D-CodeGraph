@@ -12,4 +12,5 @@ public class PlayerController : MonoBehaviour
     {
         transform.position = transform.position + Direction * Speed * Time.deltaTime;
     }
-}
+}
+
