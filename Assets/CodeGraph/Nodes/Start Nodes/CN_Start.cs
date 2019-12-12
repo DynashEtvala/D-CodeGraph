@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using XNode;
 
-namespace CodeGraph
+namespace CodeGraph.Messages
 {
-    public class CN_Start : CN_StarterBase
+    public class CN_Start : CN_MessageBase
     {
 
         // Use this for initialization

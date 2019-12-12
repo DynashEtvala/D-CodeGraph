@@ -23,7 +23,7 @@ namespace CodeGraph
 
         public override void OnCreateConnection(NodePort from, NodePort to)
         {
-            if (to == GetPort("val1") && !(from.node is CN_VariableBase || from.node is CN_UnityAccessBase))
+            if (to == GetPort("val1") && !(from.node is Variables.CN_VariableBase || from.node is CN_UnityAccessBase))
             {
                 to.Disconnect(from);
                 return;

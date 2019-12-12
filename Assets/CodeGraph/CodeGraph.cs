@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using XNode;
+using CodeGraph.Messages;
+using CodeGraph.Variables;
 
 namespace CodeGraph
 {
@@ -14,7 +16,7 @@ namespace CodeGraph
         string CodeStr;
 
         List<CN_VariableBase> VNs;
-        List<CN_StarterBase> SNs;
+        List<CN_MessageBase> SNs;
         List<CN_Base> LoopStack;
         int Scope;
 
@@ -25,7 +27,7 @@ namespace CodeGraph
             CodeStr = "";
 
             VNs = new List<CN_VariableBase>();
-            SNs = new List<CN_StarterBase>();
+            SNs = new List<CN_MessageBase>();
             LoopStack = new List<CN_Base>();
             Scope = 0;
         }
@@ -52,11 +54,11 @@ namespace CodeGraph
             //Populate Starter list
             foreach(Node n in nodes)
             {
-                //Check if n is a CN_StarterBase
-                if (n is CN_StarterBase)
+                //Check if n is a CN_MessageBase
+                if (n is CN_MessageBase)
                 {
                     //add node to SNs list
-                    SNs.Add((CN_StarterBase)n);
+                    SNs.Add((CN_MessageBase)n);
                 }
             }
 
@@ -79,7 +81,7 @@ namespace CodeGraph
                 }
 
                 //Loop through StartNodes (Update, Start, etc. + any methods)
-                foreach(CN_StarterBase n in SNs)
+                foreach(CN_MessageBase n in SNs)
                 {
                     //cosmetic spacing
                     Appln();
@@ -90,7 +92,7 @@ namespace CodeGraph
 
                     CN_OrderedBase curNode = null;
 
-                    if (n.GetPort("Next").ConnectionCount > 0)
+                    if (n.GetPort("Next").IsConnected)
                     {
                         curNode = (CN_OrderedBase)n.GetPort("Next").Connection.node;
                     }
@@ -106,7 +108,7 @@ namespace CodeGraph
                         //if loop, add to LoopStack and iterate through loop. When completed, make next node to procede to use continuation port node
 
                         //set curNode to next node
-                        if (curNode.GetPort("Next").ConnectionCount == 1)
+                        if (curNode.GetPort("Next").IsConnected)
                         {
                             curNode = (CN_OrderedBase)curNode.GetPort("Next").Connection.node;
                         }

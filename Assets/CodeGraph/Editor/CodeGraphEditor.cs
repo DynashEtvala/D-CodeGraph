@@ -19,7 +19,7 @@ namespace CodeGraph
 
         public override string GetNodeMenuName(System.Type type)
         {
-            if (type.Namespace == "CodeGraph")
+            if (type.Namespace.Contains("CodeGraph"))
             {
                 if (base.GetNodeMenuName(type).Contains("Base"))
                 {
@@ -27,7 +27,7 @@ namespace CodeGraph
                 }
                 else
                 {
-                    return base.GetNodeMenuName(type).Replace("Code Graph/CN_", "");
+                    return base.GetNodeMenuName(type).Replace("Code Graph/", "").Replace("CN_", "");
                 }
             }
             else

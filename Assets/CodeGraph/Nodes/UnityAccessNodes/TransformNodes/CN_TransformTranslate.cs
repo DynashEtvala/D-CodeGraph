@@ -5,11 +5,10 @@ using XNode;
 
 namespace CodeGraph
 {
-    public class CN_TransformTranslate : CN_UnityAccessBase
+    public class CN_TransformTranslate : CN_UnityOrderedAccessBase
     {
         public enum INPUT_TYPE{VECTOR3, FLOATS};
 
-        [Input(connectionType = ConnectionType.Override)] public CN_Coupler Last;
         [Output(connectionType = ConnectionType.Override)] public CN_Coupler Next;
 
         public INPUT_TYPE InputType = INPUT_TYPE.VECTOR3;
@@ -24,7 +23,6 @@ namespace CodeGraph
         protected override void Init()
         {
             base.Init();
-
         }
 
         // Return the correct value of an output port when requested
@@ -38,9 +36,9 @@ namespace CodeGraph
             switch (InputType)
             {
                 case INPUT_TYPE.VECTOR3:
-                    return "transform.Translate(" + InputVarName("Direction") + ");";
+                    return "transform.Translate(" + (GetPort("Direction").IsConnected ? InputVarName("Direction") : "Vector3.zero") + ");";
                 case INPUT_TYPE.FLOATS:
-                    return "transform.Translate(" + InputVarName("x") + "," + InputVarName("y") + "," + InputVarName("z") + ");";
+                    return "transform.Translate(" + (GetPort("x").IsConnected ? InputVarName("x") : "0") + "," + (GetPort("y").IsConnected ? InputVarName("y") : "0") + "," + (GetPort("z").IsConnected ? InputVarName("z") : "0") + ");";
                 default:
                     throw new System.Exception("Invalid INPUT_TYPE");
             }
@@ -51,21 +49,21 @@ namespace CodeGraph
             switch (InputType)
             {
                 case INPUT_TYPE.VECTOR3:
-                    while (GetPort("x").ConnectionCount > 0)
+                    while (GetPort("x").IsConnected)
                     {
                         GetPort("x").Disconnect(0);
                     }
-                    while (GetPort("y").ConnectionCount > 0)
+                    while (GetPort("y").IsConnected)
                     {
                         GetPort("y").Disconnect(0);
                     }
-                    while (GetPort("z").ConnectionCount > 0)
+                    while (GetPort("z").IsConnected)
                     {
                         GetPort("z").Disconnect(0);
                     }
                     break;
                 case INPUT_TYPE.FLOATS:
-                    while (GetPort("x").ConnectionCount > 0)
+                    while (GetPort("Direction").IsConnected)
                     {
                         GetPort("Direction").Disconnect(0);
                     }

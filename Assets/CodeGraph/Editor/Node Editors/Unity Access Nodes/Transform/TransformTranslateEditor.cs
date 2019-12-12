@@ -10,6 +10,11 @@ namespace CodeGraph
     {
         private CN_TransformTranslate translateNode;
 
+        public override void OnHeaderGUI()
+        {
+            base.OnHeaderGUI();
+        }
+
         public override void OnBodyGUI()
         {
             if(translateNode == null)
@@ -19,7 +24,7 @@ namespace CodeGraph
 
             serializedObject.Update();
 
-            NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("Last"));
+            NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("last"));
             NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("Next"));
 
             NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("InputType"));

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using XNode;
 
-namespace CodeGraph
+namespace CodeGraph.Variables
 {
     public class CN_VariableFloat : CN_VariableBase
     {
