@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using XNode;
 
-namespace CodeGraph
+namespace CodeGraph.Constants
 {
     public class CN_ConstantFloat : CN_ConstantBase
     {
@@ -23,7 +23,7 @@ namespace CodeGraph
             switch (port.fieldName)
             {
                 case "value":
-                    return new CNV_Float(Value.ToString());
+                    return new CNV_Float((Value.ToString() + "f"));
                 default:
                     return null;
             }

@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using XNode;
 
-namespace CodeGraph {
+namespace CodeGraph.Math
+{
     public class CN_Multiply : CN_MathBase
     {
+        [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Inherited)] public CNV_Var val1;
+        [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Inherited)] public CNV_Var val2;
+        [Output(connectionType = ConnectionType.Multiple)] public CNV_Var result;
 
         // Use this for initialization
         protected override void Init()
         {
             base.Init();
-
-            AddDynamicInput(typeof(CNV_Var), ConnectionType.Override, TypeConstraint.Inherited, "val1");
-            AddDynamicInput(typeof(CNV_Var), ConnectionType.Override, TypeConstraint.None, "val2");
-            AddDynamicOutput(typeof(CNV_Var), ConnectionType.Multiple, TypeConstraint.None, "result");
         }
 
         // Return the correct value of an output port when requested

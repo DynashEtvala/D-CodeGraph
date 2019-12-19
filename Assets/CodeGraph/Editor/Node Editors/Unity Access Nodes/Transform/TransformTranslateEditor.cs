@@ -8,18 +8,13 @@ namespace CodeGraph
     [CustomNodeEditor(typeof(CN_TransformTranslate))]
     public class TransformTranslateEditor : NodeEditor
     {
-        private CN_TransformTranslate translateNode;
-
-        public override void OnHeaderGUI()
-        {
-            base.OnHeaderGUI();
-        }
+        private CN_TransformTranslate targetNode;
 
         public override void OnBodyGUI()
         {
-            if(translateNode == null)
+            if(targetNode == null)
             {
-                translateNode = target as CN_TransformTranslate;
+                targetNode = target as CN_TransformTranslate;
             }
 
             serializedObject.Update();
@@ -29,9 +24,9 @@ namespace CodeGraph
 
             NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("InputType"));
 
-            translateNode.UpdatePorts();
+            targetNode.UpdatePorts();
 
-            switch (translateNode.InputType)
+            switch (targetNode.InputType)
             {
                 case CN_TransformTranslate.INPUT_TYPE.VECTOR3:
                     NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("Direction"));

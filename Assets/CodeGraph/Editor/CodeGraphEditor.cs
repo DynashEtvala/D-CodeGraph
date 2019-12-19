@@ -43,6 +43,10 @@ namespace CodeGraph
             {
                 if (GUILayout.Button("Build!"))
                 {
+                    if (codeGraph.FilePath != "")
+                    {
+                        codeGraph.FilePath = Application.dataPath.Replace("Assets", AssetDatabase.GetAssetPath(codeGraph)).Replace(".asset", ".cs");
+                    }
                     codeGraph.BuildComponent();
                 }
                 GUILayout.BeginHorizontal();

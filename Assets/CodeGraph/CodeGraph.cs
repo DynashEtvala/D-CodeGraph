@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
 using UnityEngine;
 using XNode;
-using CodeGraph.Messages;
-using CodeGraph.Variables;
 
 namespace CodeGraph
 {
@@ -12,6 +12,7 @@ namespace CodeGraph
     public class CodeGraph : NodeGraph
     {
         public string ComponentName;
+        public string FilePath;
 
         string CodeStr;
 
@@ -23,7 +24,7 @@ namespace CodeGraph
         CodeGraph()
         {
             ComponentName = "Component Name";
-
+            
             CodeStr = "";
 
             VNs = new List<CN_VariableBase>();
@@ -123,7 +124,20 @@ namespace CodeGraph
             CloseScope();
             Debug.Log(CodeStr);
 
+            File.WriteAllBytes(FilePath, new UTF8Encoding(true).GetBytes(""));
+
+            using (FileStream fs = File.OpenWrite(FilePath))
+            {
+                AddTextToFile(fs, CodeStr);
+            }
+            
             PrepBuild();
+        }
+
+        private static void AddTextToFile(FileStream fs, string value)
+        {
+            byte[] info = new UTF8Encoding(true).GetBytes(value);
+            fs.Write(info, 0, info.Length);
         }
 
         /// <summary>
@@ -179,6 +193,7 @@ namespace CodeGraph
         /// </summary>
         void PrepBuild()
         {
+            ComponentName = name;
             CodeStr = "";
             VNs.Clear();
             SNs.Clear();

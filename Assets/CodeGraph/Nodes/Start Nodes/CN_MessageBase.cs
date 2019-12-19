@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using XNode;
 
-namespace CodeGraph.Messages
+namespace CodeGraph
 {
     public class CN_MessageBase : CN_Base
     {

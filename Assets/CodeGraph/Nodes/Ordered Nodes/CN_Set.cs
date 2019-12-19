@@ -3,27 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using XNode;
 
-namespace CodeGraph
+namespace CodeGraph.Variables
 {
     public class CN_Set : CN_OrderedBase
     {
+        [Output(connectionType = ConnectionType.Override)] public CN_Coupler Next;
+        [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Inherited)] public CNV_Var val1;
+        [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Inherited)] public CNV_Var val2;
+        [Output(connectionType = ConnectionType.Multiple)] public CNV_Var result;
 
         // Use this for initialization
         protected override void Init()
         {
             base.Init();
-
-            AddDynamicOutput(typeof(CN_Coupler), ConnectionType.Override, TypeConstraint.Inherited, "Next");
-
-            AddDynamicInput(typeof(CNV_Var), ConnectionType.Override, TypeConstraint.Inherited, "val1");
-            AddDynamicInput(typeof(CNV_Var), ConnectionType.Override, TypeConstraint.None, "val2");
-
-            AddDynamicOutput(typeof(CNV_Var), ConnectionType.Multiple, TypeConstraint.None, "result");
         }
 
         public override void OnCreateConnection(NodePort from, NodePort to)
         {
-            if (to == GetPort("val1") && !(from.node is Variables.CN_VariableBase || from.node is CN_UnityAccessBase))
+            if (to == GetPort("val1") && !(from.node is CN_VariableBase || from.node is CN_UnityAccessBase))
             {
                 to.Disconnect(from);
                 return;
