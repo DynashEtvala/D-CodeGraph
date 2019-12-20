@@ -92,6 +92,15 @@ namespace CodeGraph
     [Serializable]
     public class CNV_Bool : CNV_Var
     {
+        public CNV_Bool()
+        {
+            CN_Type = CN_TYPE.BOOL;
+        }
+
+        public CNV_Bool(string varName) : this()
+        {
+            Name = varName;
+        }
     }
 
     [Serializable]

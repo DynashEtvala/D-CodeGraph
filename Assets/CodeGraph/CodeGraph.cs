@@ -5,6 +5,7 @@ using System.IO;
 using System.Text;
 using UnityEngine;
 using XNode;
+using CodeGraph.Logic;
 
 namespace CodeGraph
 {
@@ -18,18 +19,16 @@ namespace CodeGraph
 
         List<CN_VariableBase> VNs;
         List<CN_MessageBase> SNs;
-        List<CN_Base> LoopStack;
+        Stack<CN_OrderedBase> ScopeStack;
         int Scope;
 
         CodeGraph()
         {
-            ComponentName = "Component Name";
-            
             CodeStr = "";
 
             VNs = new List<CN_VariableBase>();
             SNs = new List<CN_MessageBase>();
-            LoopStack = new List<CN_Base>();
+            ScopeStack = new Stack<CN_OrderedBase>();
             Scope = 0;
         }
 
@@ -91,31 +90,66 @@ namespace CodeGraph
                     Appln(n.GetResult());
                     OpenScope();
 
-                    CN_OrderedBase curNode = null;
-
                     if (n.GetPort("Next").IsConnected)
                     {
-                        curNode = (CN_OrderedBase)n.GetPort("Next").Connection.node;
+                        ScopeStack.Push((CN_OrderedBase)n.GetPort("Next").Connection.node);
                     }
+                    
                     //step through connected order dependant nodes (set, loops, method calls, etc)
-                    while(curNode != null)
+                    while(ScopeStack.Count != 0)
                     {
+                        CN_OrderedBase curNode = ScopeStack.Peek();
                         //determine node type and begin performance of actions
-                        if(curNode is CN_OrderedBase)
+                        if (curNode is CN_ScopedOrderedBase)
+                        {
+                            //has the node been evaluated already?
+                            if(!(curNode as CN_ScopedOrderedBase).Evaluated)
+                            {
+                                Appln(curNode.GetResult());
+                            }
+                        }
+                        else
                         {
                             Appln(curNode.GetResult());
                         }
 
-                        //if loop, add to LoopStack and iterate through loop. When completed, make next node to procede to use continuation port node
-
-                        //set curNode to next node
-                        if (curNode.GetPort("Next").IsConnected)
+                        if (!(curNode is CN_ScopedOrderedBase))
                         {
-                            curNode = (CN_OrderedBase)curNode.GetPort("Next").Connection.node;
+                            ScopeStack.Pop();
+                            if (curNode.GetOutputPort("Next").IsConnected)
+                            {
+                                ScopeStack.Push(curNode.GetOutputPort("Next").GetConnection(0).node as CN_OrderedBase);
+                            }
+                            else if(ScopeStack.Count > 1)
+                            {
+                                CloseScope();
+                            }
+                            continue;
                         }
-                        else
+                        if(curNode is CN_If)
                         {
-                            curNode = null;
+                            if (!(curNode as CN_If).Evaluated)
+                            {
+                                OpenScope();
+                                ScopeStack.Push(curNode.GetOutputPort("True").GetConnection(0).node as CN_OrderedBase);
+                                (curNode as CN_If).Evaluated = true;
+                                continue;
+                            }
+                            else
+                            {
+                                CloseScope();
+                                ScopeStack.Pop();
+                                if (curNode.GetOutputPort("Next").IsConnected)
+                                {
+                                    ScopeStack.Push(curNode.GetOutputPort("Next").GetConnection(0).node as CN_OrderedBase);
+                                }
+                                else if (ScopeStack.Count > 1)
+                                {
+                                    CloseScope();
+                                }
+                                (curNode as CN_If).Evaluated = false;
+                                continue;
+                            }
                         }
                     }
                     CloseScope();

@@ -1,20 +1,21 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using XNode;
 
 namespace CodeGraph
 {
-    public class CN_VariableBase : CN_Base
+    class CN_ScopedOrderedBase : CN_OrderedBase
     {
-        public string Name;
-
-        public CN_ACCESSABILITY accessability = CN_ACCESSABILITY.PUBLIC;
+        public bool Evaluated { get; set; }
 
         // Use this for initialization
         protected override void Init()
         {
             base.Init();
+
         }
 
         // Return the correct value of an output port when requested

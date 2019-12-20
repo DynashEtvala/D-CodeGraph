@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using XNode;
 
-namespace CodeGraph
+namespace CodeGraph.Constants
 {
-    public class CN_VariableBase : CN_Base
+    public class CN_ConstantInt : CN_ConstantBase
     {
-        public string Name;
-
-        public CN_ACCESSABILITY accessability = CN_ACCESSABILITY.PUBLIC;
+        public float Value;
+        [Output] public CNV_Int value;
 
         // Use this for initialization
         protected override void Init()
@@ -20,7 +19,13 @@ namespace CodeGraph
         // Return the correct value of an output port when requested
         public override object GetValue(NodePort port)
         {
-            return null;
+            switch (port.fieldName)
+            {
+                case "value":
+                    return new CNV_Float(Value.ToString());
+                default:
+                    return null;
+            }
         }
     }
 }

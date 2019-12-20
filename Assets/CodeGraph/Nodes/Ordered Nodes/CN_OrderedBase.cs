@@ -7,7 +7,6 @@ namespace CodeGraph
 {
     public class CN_OrderedBase : CN_Base
     {
-        [Input(connectionType = ConnectionType.Override)] public CN_Coupler last;
 
         // Use this for initialization
         protected override void Init()

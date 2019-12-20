@@ -25,7 +25,7 @@ namespace CodeGraph.Math
                 case "result":
                     CNV_Var valResult = new CNV_Var();
                     valResult.CN_Type = InputVar("val1").CN_Type;
-                    valResult.Name = InputVarName("val1") + (GetPort("val2").ConnectionCount > 0 ? " * " + InputVarName("val2") : "");
+                    valResult.Name = "(" + InputVarName("val1") + (GetPort("val2").ConnectionCount > 0 ? " * " + InputVarName("val2") : "") + ")";
                     return valResult;
                 default:
                     return null;

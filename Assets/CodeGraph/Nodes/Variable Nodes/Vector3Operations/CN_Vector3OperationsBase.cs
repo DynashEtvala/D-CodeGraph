@@ -3,21 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using XNode;
 
-namespace CodeGraph
+namespace CodeGraph.Variables.VectorOperations
 {
-    public class CN_VariableBase : CN_Base
+    class CN_Vector3OperationsBase : CN_Base
     {
-        public string Name;
-
-        public CN_ACCESSABILITY accessability = CN_ACCESSABILITY.PUBLIC;
-
-        // Use this for initialization
         protected override void Init()
         {
             base.Init();
         }
 
-        // Return the correct value of an output port when requested
         public override object GetValue(NodePort port)
         {
             return null;

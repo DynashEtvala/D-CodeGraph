@@ -7,16 +7,25 @@ public class PlayerController : MonoBehaviour
 {
 	public Vector3 Direction;
 	public float Speed;
-	private float zDrift;
+	[SerializeField] private float zDrift;
+	[SerializeField] private bool returning;
+	public float ReturnDistX;
 	
 	void Update()
 	{
-		transform.Translate(0,0,zDrift * Speed);
-		transform.position = transform.position + Direction * Speed * Time.deltaTime;
+		if(((returning && (transform.position.x <= 0)) || ((transform.position.x >= ReturnDistX) && !returning)))
+		{
+			Direction = (Direction * -1f);
+			zDrift = (zDrift * -1f);
+			returning = !returning;
+		}
+		transform.Translate(0, 0, (zDrift * Time.deltaTime));
+		transform.position = (transform.position + ((Direction * Speed) * Time.deltaTime));
 	}
 	
 	void Start()
 	{
 		zDrift = 1.1f;
+		returning = false;
 	}
 }
