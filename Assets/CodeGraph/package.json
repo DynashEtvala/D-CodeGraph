@@ -1,0 +1,14 @@
+{
+    "name": "com.dynashetvala.codegraph",
+    "displayName": "Code Graph",
+    "version": "0.0.1",
+    "unity": "2019.1.1f1",
+    "description": "A visual coding graph for unity.",
+    "keywords": [
+        "visual",
+        "unity",
+	"coding",
+	"graph"
+    ],
+    "category": "Unity"
+}
