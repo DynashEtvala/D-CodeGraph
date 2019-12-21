@@ -43,7 +43,7 @@ namespace CodeGraph
             {
                 if (GUILayout.Button("Build!"))
                 {
-                    if (codeGraph.FilePath != "")
+                    if (codeGraph.FilePath != Application.dataPath.Replace("Assets", AssetDatabase.GetAssetPath(codeGraph)).Replace(".asset", ".cs"))
                     {
                         codeGraph.FilePath = Application.dataPath.Replace("Assets", AssetDatabase.GetAssetPath(codeGraph)).Replace(".asset", ".cs");
                     }

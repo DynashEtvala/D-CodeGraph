@@ -125,6 +125,15 @@ namespace CodeGraph
     [Serializable]
     public class CNV_GameObject : CNV_Var
     {
+        public CNV_GameObject()
+        {
+            CN_Type = CN_TYPE.GAMEOBJECT;
+        }
+
+        public CNV_GameObject(string varName) : this()
+        {
+            Name = varName;
+        }
     }
 
     [Serializable]

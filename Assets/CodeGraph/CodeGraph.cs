@@ -40,6 +40,8 @@ namespace CodeGraph
         {
             PrepBuild();
 
+            Appln("//" + FilePath);
+
             //Populate Variable list
             foreach (Node n in nodes)
             {

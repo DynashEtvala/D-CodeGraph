@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using XNodeEditor;
 
-namespace CodeGraph
+namespace CodeGraph.Variables.TransformOperations
 {
     [CustomNodeEditor(typeof(CN_TransformTranslate))]
     public class TransformTranslateEditor : NodeEditor
@@ -21,6 +21,8 @@ namespace CodeGraph
 
             NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("last"));
             NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("Next"));
+
+            NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("transform"));
 
             NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("InputType"));
 

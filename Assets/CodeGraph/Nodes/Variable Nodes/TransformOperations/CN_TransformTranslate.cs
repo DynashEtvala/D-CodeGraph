@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using XNode;
 
-namespace CodeGraph
+namespace CodeGraph.Variables.TransformOperations
 {
-    public class CN_TransformTranslate : CN_UnityOrderedAccessBase
+    public class CN_TransformTranslate : CN_OrderedBase
     {
         public enum INPUT_TYPE{VECTOR3, FLOATS};
         
         [Input(connectionType = ConnectionType.Override)] public CN_Coupler last;
         [Output(connectionType = ConnectionType.Override)] public CN_Coupler Next;
+
+        [Input(connectionType = ConnectionType.Override)] public CNV_Transform transform;
 
         public INPUT_TYPE InputType = INPUT_TYPE.VECTOR3;
 
@@ -37,9 +39,9 @@ namespace CodeGraph
             switch (InputType)
             {
                 case INPUT_TYPE.VECTOR3:
-                    return "transform.Translate(" + (GetPort("Direction").IsConnected ? InputVarName("Direction") : "Vector3.zero") + ");";
+                    return InputVarName("transform") + ".Translate(" + (GetPort("Direction").IsConnected ? InputVarName("Direction") : "Vector3.zero") + ");";
                 case INPUT_TYPE.FLOATS:
-                    return "transform.Translate(" + (GetPort("x").IsConnected ? InputVarName("x") : "0") + ", " + (GetPort("y").IsConnected ? InputVarName("y") : "0") + ", " + (GetPort("z").IsConnected ? InputVarName("z") : "0") + ");";
+                    return InputVarName("transform") + ".Translate(" + (GetPort("x").IsConnected ? InputVarName("x") : "0") + ", " + (GetPort("y").IsConnected ? InputVarName("y") : "0") + ", " + (GetPort("z").IsConnected ? InputVarName("z") : "0") + ");";
                 default:
                     throw new System.Exception("Invalid INPUT_TYPE");
             }
